@@ -37,9 +37,9 @@ $ npm install babel-plugin-transform-jsx-fragment
 ```json
 {
   "plugins": [
-  	["transform-jsx-fragment", {
-  		"moduleName": "preact"
-  	}]
+    ["transform-jsx-fragment", {
+      "moduleName": "preact"
+    }]
   ]
 }
 ```
