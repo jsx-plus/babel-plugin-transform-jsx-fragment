@@ -7,15 +7,19 @@
 **In**
 
 ```js
-// input code
+export default function Foo() {
+  return (<Fragment></Fragment>);
+}
 ```
 
 **Out**
 
 ```js
-"use strict";
+import { Fragment } from "rax";
 
-// output code
+export default function Foo() {
+  return <Fragment></Fragment>;
+}
 ```
 
 ## Installation
@@ -32,9 +36,15 @@ $ npm install babel-plugin-transform-jsx-fragment
 
 ```json
 {
-  "plugins": ["transform-jsx-fragment"]
+  "plugins": [
+  	["transform-jsx-fragment", {
+  		"moduleName": "preact"
+  	}]
+  ]
 }
 ```
+
+- moduleName: Optional, import module name, default to 'rax'.
 
 ### Via CLI
 
