@@ -2,19 +2,18 @@ const FRAGMENT = 'Fragment';
 
 export default function({ types: t }, options = {}) {
   const { moduleName = 'rax' } = options;
-  let rootPath;
-  let added = false;
   return {
     visitor: {
       Program(path) {
-        rootPath = path;
+        path.__jsxfragment = false;
       },
       JSXIdentifier(path) {
+        const rootPath = path.findParent(p => p.isProgram());
         const { node } = path;
         if (node.name === FRAGMENT) {
-          if (!added) {
+          if (rootPath.__jsxfragment === false) {
             addImportStatement(rootPath, moduleName, t);
-            added = true;
+            rootPath.__jsxfragment = true;
           }
           path.stop();
         }
@@ -23,11 +22,10 @@ export default function({ types: t }, options = {}) {
   };
 }
 
-function addImportStatement(path, moduleName, t) {
-  const { node } = path;
+function addImportStatement(rootPath, moduleName, t) {
   const id = t.identifier(FRAGMENT);
   const importDeclaration = t.importDeclaration([
     t.importSpecifier(id, id)
   ], t.stringLiteral(moduleName))
-  node.body.unshift(importDeclaration);
+  rootPath.unshiftContainer('body', importDeclaration);
 }
