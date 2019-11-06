@@ -7,6 +7,20 @@ export default function({ types: t }, options = {}) {
       Program(path) {
         path.__jsxfragment = false;
       },
+      ImportDeclaration(path) {
+        const { node } = path;
+        const { specifiers, source } = node;
+        const rootPath = path.findParent(p => p.isProgram());
+
+        if (source && source.value === moduleName && specifiers) {
+          specifiers.some(function(s) {
+            if (s.local.name === FRAGMENT) {
+              rootPath.__jsxfragment = true;
+              return true;
+            }
+          });
+        }
+      },
       JSXIdentifier(path) {
         const rootPath = path.findParent(p => p.isProgram());
         const { node } = path;
