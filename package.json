@@ -9,6 +9,7 @@
     "@babel/core": "^7.5.4",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.7.0",
     "@babel/register": "^7.4.4",
     "mocha": "^6.1.4"
   },
