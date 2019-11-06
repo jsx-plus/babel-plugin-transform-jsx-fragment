@@ -21,15 +21,15 @@ export default function({ types: t }, options = {}) {
           });
         }
       },
-      JSXIdentifier(path) {
+      JSXOpeningElement(path) {
         const rootPath = path.findParent(p => p.isProgram());
         const { node } = path;
-        if (node.name === FRAGMENT) {
+        
+        if (t.isJSXIdentifier(node.name, { name: FRAGMENT })) {
           if (rootPath.__jsxfragment === false) {
             addImportStatement(rootPath, moduleName, t);
             rootPath.__jsxfragment = true;
           }
-          path.stop();
         }
       }
     }
