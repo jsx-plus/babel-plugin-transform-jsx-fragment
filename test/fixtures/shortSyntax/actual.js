@@ -1,4 +1,4 @@
-import { createElement, useState } from "rax";
+import { useState } from "rax";
 export default function Foo() {
   return (<></>);
 }

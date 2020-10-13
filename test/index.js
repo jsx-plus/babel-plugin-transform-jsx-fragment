@@ -16,10 +16,6 @@ describe('', () => {
       const actualPath = path.join(fixtureDir, 'actual.js');
       const actual = transformFileSync(actualPath, {
         plugins: [
-          ["@babel/plugin-transform-react-jsx", {
-            'pragma': 'createElement',
-            'pragmaFrag': 'Fragment',
-          }],
           [plugin, { moduleName: 'rax' }]
         ],
         parserOpts: { plugins: ['jsx'] },

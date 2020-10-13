@@ -1,5 +1,5 @@
 import { Fragment } from "rax";
-import { createElement, useState } from "rax";
+import { useState } from "rax";
 export default function Foo() {
-  return createElement(Fragment, null);
+  return <Fragment></Fragment>;
 }
