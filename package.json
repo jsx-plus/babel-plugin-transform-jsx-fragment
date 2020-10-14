@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-jsx-fragment",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "",
   "author": "jsx-plus <i@zeroling.com>",
   "main": "lib/index.js",
