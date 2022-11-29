@@ -1,7 +1,7 @@
 const FRAGMENT = 'Fragment';
 
 export default function({ types: t }, options = {}) {
-  const { moduleName = 'rax' } = options;
+  const { moduleName = 'rax', ignoreModuleCheck = false, } = options;
   return {
     visitor: {
       Program(path) {
@@ -12,7 +12,8 @@ export default function({ types: t }, options = {}) {
         const { specifiers, source } = node;
         const rootPath = path.findParent(p => p.isProgram());
 
-        if (source && source.value === moduleName && specifiers) {
+        // Check if `Fragment` is already imported.
+        if ((ignoreModuleCheck || (source && source.value === moduleName)) && specifiers) {
           specifiers.some(function(s) {
             if (s.local.name === FRAGMENT) {
               rootPath.__jsxfragment = true;
