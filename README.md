@@ -38,13 +38,15 @@ $ npm install babel-plugin-transform-jsx-fragment
 {
   "plugins": [
     ["transform-jsx-fragment", {
-      "moduleName": "preact"
+      "moduleName": "preact",
+      "ignoreModuleCheck": false,
     }]
   ]
 }
 ```
 
-- moduleName: Optional, import module name, default to 'rax'.
+- moduleName: String, Optional, import module name, default to 'rax'.
+- ignoreModuleCheck: Boolean, Optional, ignore checking the imported `Fragment` from same `moduleName`, default to `false`.
 
 ### Via CLI
 
